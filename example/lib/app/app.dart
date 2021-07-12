@@ -2,6 +2,7 @@ import 'package:chewie_example/app/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 import 'package:video_player/video_player.dart';
 
@@ -46,67 +47,20 @@ class _ChewieDemoState extends State<ChewieDemo> {
         'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4');
     await Future.wait([
       _videoPlayerController1.initialize(),
-      _videoPlayerController2.initialize()
+      _videoPlayerController2.initialize(),
     ]);
     _createChewieController();
     setState(() {});
   }
 
   void _createChewieController() {
-    // final subtitles = [
-    //     Subtitle(
-    //       index: 0,
-    //       start: Duration.zero,
-    //       end: const Duration(seconds: 10),
-    //       text: 'Hello from subtitles',
-    //     ),
-    //     Subtitle(
-    //       index: 0,
-    //       start: const Duration(seconds: 10),
-    //       end: const Duration(seconds: 20),
-    //       text: 'Whats up? :)',
-    //     ),
-    //   ];
-
-    final subtitles = [
-      Subtitle(
-        index: 0,
-        start: Duration.zero,
-        end: const Duration(seconds: 10),
-        text: const TextSpan(children: [
-          TextSpan(
-            text: 'Hello',
-            style: TextStyle(color: Colors.red, fontSize: 22),
-          ),
-          TextSpan(
-            text: ' from ',
-            style: TextStyle(color: Colors.green, fontSize: 20),
-          ),
-          TextSpan(
-            text: 'subtitles',
-            style: TextStyle(color: Colors.blue, fontSize: 18),
-          )
-        ]),
-      ),
-      Subtitle(
-          index: 0,
-          start: const Duration(seconds: 10),
-          end: const Duration(seconds: 20),
-          text: 'Whats up? :)'
-          // text: const TextSpan(
-          //   text: 'Whats up? :)',
-          //   style: TextStyle(color: Colors.amber, fontSize: 22, fontStyle: FontStyle.italic),
-          // ),
-          ),
-    ];
-
     _chewieController = ChewieController(
-      //phil _videoPlayerController2
       videoPlayerController: _videoPlayerController2,
       autoPlay: true,
       looping: true,
       //phil fullScreenByDefault true
       fullScreenByDefault: true,
+      autoInitialize: true,
       // subtitle: Subtitles(subtitles),
       // subtitleBuilder: (context, dynamic subtitle) => Container(
       //   padding: const EdgeInsets.all(10.0),
@@ -138,9 +92,8 @@ class _ChewieDemoState extends State<ChewieDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-
       title: widget.title,
       theme: AppTheme.light.copyWith(
         //phil IOS
@@ -157,8 +110,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
                 child: _chewieController != null &&
                         _chewieController!
                             .videoPlayerController.value.isInitialized
-                    ?
-                Chewie(
+                    ? Chewie(
                         controller: _chewieController!,
                       )
                     : Column(

@@ -14,11 +14,19 @@ dependencies:
   provider: ^5.0.0
   video_player: ^2.1.5
   wakelock: ^0.5.2
+  get: ^4.1.4
+  fluttertoast: ^8.0.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   lint: ^1.5.1
 
+
+
 flutter:
   uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/img/

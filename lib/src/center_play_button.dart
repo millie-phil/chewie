@@ -22,8 +22,7 @@ class CenterPlayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
-      child: Center(
-        child: AnimatedOpacity(
+      child: AnimatedOpacity(
           opacity: show ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 300),
           child: Container(
@@ -50,7 +49,7 @@ class CenterPlayButton extends StatelessWidget {
             ),
           ),
         ),
-      ),
+
     );
   }
 }
